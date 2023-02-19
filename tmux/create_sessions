@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+###############################################################################
+
+### OPTIONS ABBREVIATION ###
+# -s ==> session | -n ==> name of the window | -d ==> detach from the window |
+# -t ==> target  | -u ==> write UTF-8 output to the terminal
+
+###############################################################################
+
+### CREATE TERMINAL SESSION ###
+tmux new-session -s 0terminal -n terminal -d
+
+### CREATE FRONT-END SESSION ###
+# Session and first window
+tmux new-session -s 1front_end_side -n html_css -d
+tmux split-window -h
+tmux select-pane -t 1
+
+# Second window
+tmux new-window -t 1front_end_side -n html_cssframework -d
+tmux select-window -t 1front_end_side:html_cssframework
+tmux split-window -v
+tmux select-pane -t 1
+
+# Third window
+tmux new-window -t 1front_end_side -n html_css_js_frameworks -d
+tmux select-window -t 1front_end_side:html_css_js_frameworks
+tmux split-window -v
+tmux select-pane -t 1
+tmux split-window -h
+tmux select-pane -t 1
+
+tmux select-window -t 1front_end_side:html_css
+
+### CREATE BACK-END SESSION ###
+tmux new-session -s 2back_end_side -n lang_langframework -d
+
+### CREATE DATABASE SESSION ###
+tmux new-session -s 3database -n database_lang -d
+
+### CREATE SERVER SESSION ###
+tmux new-session -s 4server -n running_server -d
+
+tmux -u attach -t 0terminal
