@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+mkdir src; cd src;
+touch routes.js; touch server.js
+mkdir api; mkdir config; mkdir middleware; mkdir public;
+cd api; mkdir v1;
